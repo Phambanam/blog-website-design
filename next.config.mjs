@@ -9,6 +9,9 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  experimental: {
+    optimizePackageImports: ["next-intl"],
+  },
 }
 
 export default nextConfig

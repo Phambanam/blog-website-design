@@ -1,0 +1,56 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "posts": "Bài viết",
+    "about": "Về tôi",
+    "contact": "Liên hệ",
+    "admin": "Quản lý"
+  },
+  "home": {
+    "title": "Chào mừng đến Blog của tôi",
+    "subtitle": "Khám phá những ý tưởng về phát triển web, thiết kế và công nghệ. Hãy cùng tôi trên hành trình học tập và chia sẻ kiến thức.",
+    "readArticles": "Đọc bài viết",
+    "aboutMe": "Về tôi",
+    "latestArticles": "Bài viết mới nhất",
+    "discoverInsights": "Khám phá những suy nghĩ và hiểu biết mới nhất của tôi"
+  },
+  "footer": {
+    "blog": "Blog",
+    "description": "Một blog cá nhân hiện đại khám phá phát triển web và thiết kế.",
+    "navigation": "Điều hướng",
+    "follow": "Theo dõi",
+    "copyright": "© 2025 Blog của tôi. Tất cả quyền được bảo lưu."
+  },
+  "about": {
+    "title": "Về tôi",
+    "intro": "Tôi là một nhà phát triển web và nhà thiết kế đam mê tạo ra những trải nghiệm kỹ thuật số đẹp và chức năng. Với hơn 5 năm kinh nghiệm trong ngành, tôi đã làm việc trên các dự án từ khởi nghiệp đến các ứng dụng cấp doanh nghiệp.",
+    "expertise": "Chuyên môn của tôi bao gồm các công nghệ web hiện đại như React, Next.js, TypeScript và Tailwind CSS. Tôi đặc biệt quan tâm đến việc xây dựng các ứng dụng hiệu suất cao, có thể truy cập và thân thiện với người dùng.",
+    "hobby": "Khi không lập trình, bạn có thể tìm thấy tôi khám phá các xu hướng thiết kế mới, đóng góp cho các dự án mã nguồn mở hoặc chia sẻ kiến thức thông qua viết bài và nói chuyện tại các cuộc gặp gỡ công nghệ.",
+    "skillsTitle": "Kỹ năng & Chuyên môn",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "frontendSkills": ["React & Next.js", "TypeScript", "Tailwind CSS", "Thiết kế UI/UX"],
+    "backendSkills": ["Node.js", "PostgreSQL", "REST APIs", "Thiết kế cơ sở dữ liệu"]
+  },
+  "contact": {
+    "title": "Liên hệ với tôi",
+    "subtitle": "Có câu hỏi hoặc muốn hợp tác? Tôi rất muốn nghe từ bạn.",
+    "email": "Email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "formTitle": "Gửi tin nhắn cho tôi",
+    "formDescription": "Tôi sẽ phản hồi bạn sớm nhất có thể",
+    "name": "Tên",
+    "namePlaceholder": "Tên của bạn",
+    "emailLabel": "Email",
+    "emailPlaceholder": "email@của-bạn.com",
+    "message": "Tin nhắn",
+    "messagePlaceholder": "Tin nhắn của bạn ở đây...",
+    "sendButton": "Gửi tin nhắn",
+    "sentButton": "Tin nhắn đã gửi!"
+  },
+  "posts": {
+    "title": "Tất cả bài viết",
+    "subtitle": "Duyệt tất cả các bài đăng và bài viết trên blog của tôi"
+  }
+}

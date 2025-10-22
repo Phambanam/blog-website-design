@@ -1,0 +1,56 @@
+{
+  "nav": {
+    "home": "Home",
+    "posts": "Posts",
+    "about": "About",
+    "contact": "Contact",
+    "admin": "Admin"
+  },
+  "home": {
+    "title": "Welcome to My Blog",
+    "subtitle": "Exploring ideas about web development, design, and technology. Join me on this journey of learning and sharing knowledge.",
+    "readArticles": "Read Articles",
+    "aboutMe": "About Me",
+    "latestArticles": "Latest Articles",
+    "discoverInsights": "Discover my latest thoughts and insights"
+  },
+  "footer": {
+    "blog": "Blog",
+    "description": "A modern personal blog exploring web development and design.",
+    "navigation": "Navigation",
+    "follow": "Follow",
+    "copyright": "© 2025 My Blog. All rights reserved."
+  },
+  "about": {
+    "title": "About Me",
+    "intro": "I'm a passionate web developer and designer with a love for creating beautiful, functional digital experiences. With over 5 years of experience in the industry, I've worked on projects ranging from startups to enterprise applications.",
+    "expertise": "My expertise spans across modern web technologies including React, Next.js, TypeScript, and Tailwind CSS. I'm particularly interested in building performant, accessible, and user-friendly applications.",
+    "hobby": "When I'm not coding, you can find me exploring new design trends, contributing to open-source projects, or sharing knowledge through writing and speaking at tech meetups.",
+    "skillsTitle": "Skills & Expertise",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "frontendSkills": ["React & Next.js", "TypeScript", "Tailwind CSS", "UI/UX Design"],
+    "backendSkills": ["Node.js", "PostgreSQL", "REST APIs", "Database Design"]
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "Have a question or want to collaborate? I'd love to hear from you.",
+    "email": "Email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "formTitle": "Send me a message",
+    "formDescription": "I'll get back to you as soon as possible",
+    "name": "Name",
+    "namePlaceholder": "Your name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "your@email.com",
+    "message": "Message",
+    "messagePlaceholder": "Your message here...",
+    "sendButton": "Send Message",
+    "sentButton": "Message Sent!"
+  },
+  "posts": {
+    "title": "All Articles",
+    "subtitle": "Browse all my blog posts and articles"
+  }
+}
