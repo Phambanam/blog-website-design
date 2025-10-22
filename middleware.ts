@@ -5,6 +5,25 @@ import type { NextRequest } from "next/server"
 const intlMiddleware = createMiddleware({
   locales: ["en", "vi"],
   defaultLocale: "en",
+  pathnames: {
+    "/": "/",
+    "/about": {
+      en: "/about",
+      vi: "/ve-toi",
+    },
+    "/contact": {
+      en: "/contact",
+      vi: "/lien-he",
+    },
+    "/posts": {
+      en: "/posts",
+      vi: "/bai-viet",
+    },
+    "/admin": {
+      en: "/admin",
+      vi: "/quan-ly",
+    },
+  },
 })
 
 export async function middleware(request: NextRequest) {
