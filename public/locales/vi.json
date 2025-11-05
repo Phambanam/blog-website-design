@@ -36,21 +36,32 @@
     "title": "Liên hệ với tôi",
     "subtitle": "Có câu hỏi hoặc muốn hợp tác? Tôi rất muốn nghe từ bạn.",
     "email": "Email",
+    "emailTitle": "Email",
     "github": "GitHub",
+    "githubTitle": "GitHub",
     "linkedin": "LinkedIn",
+    "linkedinTitle": "LinkedIn",
     "formTitle": "Gửi tin nhắn cho tôi",
     "formDescription": "Tôi sẽ phản hồi bạn sớm nhất có thể",
     "name": "Tên",
+    "nameLabel": "Tên",
     "namePlaceholder": "Tên của bạn",
     "emailLabel": "Email",
     "emailPlaceholder": "email@của-bạn.com",
     "message": "Tin nhắn",
+    "messageLabel": "Tin nhắn",
     "messagePlaceholder": "Tin nhắn của bạn ở đây...",
     "sendButton": "Gửi tin nhắn",
-    "sentButton": "Tin nhắn đã gửi!"
+    "sentButton": "Tin nhắn đã gửi!",
+    "submitButton": "Gửi tin nhắn",
+    "submitted": "Đã gửi!",
+    "successMessage": "Cảm ơn bạn! Tin nhắn của bạn đã được gửi thành công."
   },
   "posts": {
     "title": "Tất cả bài viết",
     "subtitle": "Duyệt tất cả các bài đăng và bài viết trên blog của tôi"
+  },
+  "post": {
+    "tableOfContents": "Mục lục"
   }
 }

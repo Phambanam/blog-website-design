@@ -4,6 +4,7 @@ import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { NextIntlClientProvider } from "next-intl"
 import { getMessages } from "next-intl/server"
+import { notFound } from "next/navigation"
 import "../globals.css"
 import { BlogProvider } from "@/lib/blog-context"
 import { AuthProvider } from "@/lib/auth-context"
@@ -16,6 +17,12 @@ export const metadata: Metadata = {
   generator: "v0.app",
 }
 
+const locales = ['en', 'vi'];
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
 export default async function RootLayout({
   children,
   params,
@@ -24,6 +31,12 @@ export default async function RootLayout({
   params: Promise<{ locale: string }>
 }>) {
   const { locale } = await params
+
+  // Validate locale
+  if (!locales.includes(locale)) {
+    notFound();
+  }
+
   const messages = await getMessages()
 
   return (

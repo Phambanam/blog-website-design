@@ -1,39 +1,8 @@
-import { updateSession } from "@/lib/supabase/middleware"
-import createMiddleware from "next-intl/middleware"
-import type { NextRequest } from "next/server"
+import createMiddleware from 'next-intl/middleware';
+import { routing } from './i18n/routing';
 
-const intlMiddleware = createMiddleware({
-  locales: ["en", "vi"],
-  defaultLocale: "en",
-  pathnames: {
-    "/": "/",
-    "/about": {
-      en: "/about",
-      vi: "/ve-toi",
-    },
-    "/contact": {
-      en: "/contact",
-      vi: "/lien-he",
-    },
-    "/posts": {
-      en: "/posts",
-      vi: "/bai-viet",
-    },
-    "/admin": {
-      en: "/admin",
-      vi: "/quan-ly",
-    },
-  },
-})
-
-export async function middleware(request: NextRequest) {
-  const intlResponse = intlMiddleware(request)
-  if (intlResponse) {
-    return intlResponse
-  }
-  return await updateSession(request)
-}
+export default createMiddleware(routing);
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)"],
-}
+  matcher: ['/', '/(en|vi)/:path*']
+};

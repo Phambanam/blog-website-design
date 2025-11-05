@@ -1,14 +1,24 @@
 "use client"
 
-import Link from "next/link"
 import { useEffect, useState } from "react"
 import { useTranslations } from "next-intl"
-import { Moon, Sun, Menu, X } from "lucide-react"
+import { Link } from "@/i18n/routing"
+import { Moon, Sun, Menu, X, User, LogOut, Shield } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import LanguageSwitcher from "./language-switcher"
+import { useAuth } from "@/lib/auth-context"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 export default function Header() {
   const t = useTranslations("nav")
+  const { isAuthenticated, user, signOut } = useAuth()
   const [isDark, setIsDark] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
 
@@ -50,12 +60,55 @@ export default function Header() {
           </Link>
         </div>
 
-        {/* Theme Toggle, Language Switcher & Mobile Menu */}
+        {/* Theme Toggle, Language Switcher, Auth & Mobile Menu */}
         <div className="flex items-center gap-4">
           <LanguageSwitcher />
           <Button variant="ghost" size="icon" onClick={toggleTheme} className="rounded-full">
             {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
           </Button>
+
+          {/* Auth UI - Desktop */}
+          <div className="hidden md:block">
+            {isAuthenticated && user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm" className="gap-2">
+                    <User className="h-4 w-4" />
+                    <span className="max-w-[100px] truncate">
+                      {user.name || user.email}
+                    </span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <DropdownMenuLabel>
+                    <div className="flex flex-col space-y-1">
+                      <p className="text-sm font-medium leading-none">{user.name || 'User'}</p>
+                      <p className="text-xs leading-none text-muted-foreground">
+                        {user.email}
+                      </p>
+                    </div>
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  {user.role === 'ADMIN' && (
+                    <DropdownMenuItem asChild>
+                      <Link href="/admin" className="cursor-pointer">
+                        <Shield className="h-4 w-4 mr-2" />
+                        Admin Dashboard
+                      </Link>
+                    </DropdownMenuItem>
+                  )}
+                  <DropdownMenuItem onClick={signOut} className="cursor-pointer text-red-600">
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Logout
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Button variant="default" size="sm" asChild>
+                <Link href="/admin">Login</Link>
+              </Button>
+            )}
+          </div>
 
           {/* Mobile Menu Button */}
           <Button variant="ghost" size="icon" className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
@@ -80,9 +133,40 @@ export default function Header() {
             <Link href="/contact" className="block text-foreground hover:text-primary transition py-2">
               {t("contact")}
             </Link>
-            <Link href="/admin" className="block text-foreground hover:text-primary transition py-2">
-              {t("admin")}
-            </Link>
+            
+            {/* Mobile Auth UI */}
+            <div className="border-t border-border pt-3 mt-3">
+              {isAuthenticated && user ? (
+                <>
+                  <div className="px-2 py-2 mb-2">
+                    <p className="text-sm font-medium text-foreground">{user.name || 'User'}</p>
+                    <p className="text-xs text-muted-foreground">{user.email}</p>
+                  </div>
+                  {user.role === 'ADMIN' && (
+                    <Link 
+                      href="/admin" 
+                      className="flex items-center gap-2 text-foreground hover:text-primary transition py-2 px-2"
+                    >
+                      <Shield className="h-4 w-4" />
+                      Admin Dashboard
+                    </Link>
+                  )}
+                  <button
+                    onClick={signOut}
+                    className="flex items-center gap-2 text-red-600 hover:text-red-700 transition py-2 px-2 w-full text-left"
+                  >
+                    <LogOut className="h-4 w-4" />
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <Link href="/admin" className="block w-full">
+                  <Button variant="default" size="sm" className="w-full">
+                    Login
+                  </Button>
+                </Link>
+              )}
+            </div>
           </div>
         </div>
       )}

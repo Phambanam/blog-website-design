@@ -1,0 +1,85 @@
+Chào bạn, đây là thông tin chi tiết về **Dự án Học tập** và **Quy trình Làm việc** được mô tả trong các nguồn, đặt trong bối cảnh rộng hơn của việc **Bắt đầu và Quản lý Dự án Lập trình Kotlin**.
+
+### I. Bối cảnh Lập trình Kotlin và Chuẩn bị (Getting Started)
+
+Các nguồn này đặt Kotlin vào bối cảnh rộng lớn của công nghệ thông tin, một lĩnh vực đã phát triển vượt bậc trong 30-40 năm qua. Ngôn ngữ lập trình được sử dụng cho nhiều loại chương trình, bao gồm desktop, web (client và server), mobile (di động), systemic (hệ thống), và embedded (nhúng).
+
+**Kotlin** được giới thiệu là ngôn ngữ đi kèm với Java. Java được coi là ngôn ngữ phổ biến và linh hoạt nhất hiện nay, một nền tảng thực thi chương trình trên nhiều hệ điều hành và phần cứng nhờ vào **Máy ảo Java (JVM)**.
+
+*   **Đặc điểm của Kotlin:** Kotlin là ngôn ngữ trẻ, dễ học, cho phép viết chương trình trên nền tảng JVM và Android một cách **ngắn gọn hơn, đơn giản hơn và ít lỗi hơn** so với Java.
+*   **Khả năng tương tác:** Kotlin và Java **hoàn toàn có thể tương tác** (interoperable); một chương trình có thể được viết bằng cả hai ngôn ngữ, và các chương trình Kotlin có thể sử dụng tất cả các thư viện Java hiện có.
+*   **Lĩnh vực ứng dụng chính:** Nền tảng chính cho ứng dụng công nghiệp của Kotlin là **chương trình di động cho Android** và, ở mức độ thấp hơn, phát triển web.
+
+Để bắt đầu, người học cần thiết lập môi trường:
+
+1.  **Môi trường Phát triển Tích hợp (IDE):** Khuyến nghị sử dụng **IntelliJ IDEA Community Edition** (phiên bản miễn phí), có hỗ trợ lập trình bằng Java, **Kotlin**, Scala, Groovy, cùng với tích hợp hệ thống kiểm soát phiên bản Git, Mercurial, SVN, và các hệ thống xây dựng Maven/Gradle.
+2.  **JDK:** Cần cài đặt gói **JDK** (Java Platform, Standard Edition), khuyến nghị phiên bản 8 hoặc 11.
+3.  **Git:** Cần cài đặt một **Git client** để tích hợp với IDEA, mặc dù IDEA đã có tích hợp sẵn plugin Git với giao diện đồ họa.
+
+### II. Dự án Học tập (Учебный проект)
+
+Dự án học tập mà người học sẽ sử dụng có tên là **"Котлин как первый язык программирования"** (Kotlin là ngôn ngữ lập trình đầu tiên).
+
+*   **Nội dung:** Dự án chứa tài liệu hướng dẫn và **khoảng một trăm bài tập** bằng ngôn ngữ Kotlin.
+*   **Vị trí:** Mã nguồn gốc của dự án có sẵn trên GitHub tại `https://github.com/Kotlin-Polytech/KotlinAsFirst-2022`.
+*   **Cấu trúc dự án:**
+    *   Các bài tập được chia thành **chín bài học (lesson)**.
+    *   Trong thư mục `src/lessonX` (X là số bài học) có các ví dụ về các bài đã giải, văn bản của các bài tập cần giải, và các hàm mẫu (stubs) đã sẵn sàng để viết lời giải.
+    *   Trong thư mục `test/lessonX` là các hàm kiểm thử (test functions) cho các bài tập.
+*   **Mức độ phức tạp của bài tập:** Các bài tập được chia thành năm cấp độ: **Trivial** (tầm thường), **Easy** (đơn giản), **Normal** (trung bình), **Hard** (khó), và **Impossible** (rất khó). Sinh viên không bắt buộc phải giải các bài tập có độ khó "Hard" hoặc "Impossible" để qua môn.
+
+### III. Quy trình Làm việc và Quản lý Dự án (Workflow)
+
+Quy trình làm việc được thiết lập dựa trên hệ thống kiểm soát phiên bản **Git/GitHub** và hệ thống chấm điểm tự động **Kotoed**.
+
+#### 1. Bắt đầu với GitHub
+
+1.  **Đăng ký và Fork:** Người học phải đăng ký trên GitHub. Sau đó, họ cần tạo một bản sao đặc biệt của kho lưu trữ dự án gọi là **"fork"** bằng cách nhấn nút Fork trên trang dự án.
+2.  **Tải xuống dự án:** Tải bản sao cá nhân của dự án về IntelliJ IDEA bằng cách sử dụng lệnh **`Check out from Version Control → GitHub`** hoặc **`Project from Version Control → GitHub`**.
+
+#### 2. Quy trình Nộp bài (Commit và Push)
+
+*   **Cam kết (Commit):** Công việc với dự án được thực hiện trong khuôn khổ hệ thống kiểm soát phiên bản Git. Các giải pháp hoàn chỉnh được thể hiện dưới dạng **commit**. Commit là một thay đổi hoàn chỉnh của văn bản dự án (ví dụ: giải quyết một hoặc nhiều bài tập).
+*   **Quy trình Commit và Push:**
+    1.  Vào cửa sổ **Version Control** (Alt + 9).
+    2.  Chọn tab **Local Changes**.
+    3.  Chọn **Commit Changes** từ menu ngữ cảnh.
+    4.  Nhập một **bình luận có ý nghĩa** (ví dụ: "Đã giải quyết bài toán X").
+    5.  Mở menu thả xuống bên cạnh nút Commit và chọn lệnh **`Commit and Push`**.
+    6.  Nhập tên, email, và thông tin đăng nhập/mật khẩu GitHub để xác định tác giả và đẩy thay đổi lên repository cá nhân.
+
+#### 3. Hệ thống Chấm điểm Kotoed
+
+Việc kiểm tra các giải pháp đã cam kết được thực hiện thông qua hệ thống **Kotlin Online Education (Kotoed)** tại `https://kotoed.spbstu.ru`.
+
+*   **Thiết lập Kotoed:**
+    1.  Đăng ký và điền thông tin hồ sơ (tên, họ, số nhóm).
+    2.  Tạo một dự án trong Kotoed được liên kết với repository GitHub cá nhân của sinh viên.
+*   **Tạo Yêu cầu Kiểm tra (Submission):**
+    1.  Vào trang dự án trong Kotoed và nhấn **Submit**. Thao tác này tự động tạo yêu cầu kiểm tra phiên bản (revision) mới nhất của repository.
+    2.  Hệ thống sẽ tự động kiểm tra yêu cầu và gửi thông báo.
+*   **Thông tin Kết quả:** Trang kết quả (Results) cung cấp thông tin chi tiết:
+    *   Những bài tập đã được giải đúng.
+    *   Những bài tập chưa hoàn thành hoặc sai, cùng với các bài kiểm thử bị thất bại.
+    *   Thống kê giải quyết nhiệm vụ cho tất cả các bài học.
+    *   Lỗi xây dựng dự án (build errors) hoặc lỗi yêu cầu kiểm tra.
+*   **Phản hồi và Sửa lỗi (Review và Resubmit):**
+    *   Sinh viên có thể thấy các câu hỏi và nhận xét của giảng viên về mã của mình trên trang **Review**.
+    *   Để sửa lỗi, sinh viên cần thực hiện các chỉnh sửa trong repository, **commit và push** chúng.
+    *   Sau đó, vào yêu cầu kiểm tra đang hoạt động và nhấn nút **Resubmit**. Một yêu cầu mới, phụ thuộc sẽ được tạo ra, tự động chuyển tất cả các bình luận từ yêu cầu gốc.
+    *   Giảng viên có quyền không kiểm tra các bài tập mới nếu vẫn còn **nhận xét chưa được sửa** đối với các bài tập cũ.
+
+#### IV. Các quy tắc quan trọng
+
+Sinh viên được khuyến nghị tuân thủ các quy tắc sau:
+
+1.  **Không chuyển sang giải quyết các bài tập mới** nếu còn nhận xét chưa được sửa đối với các bài tập cũ.
+2.  Sử dụng các bài kiểm thử được cung cấp để sửa lỗi.
+3.  **Tuân thủ Code Style** (Phong cách Mã hóa) là một phần rất quan trọng của công việc lập trình.
+4.  Được phép tìm kiếm sự giúp đỡ từ giảng viên hoặc bạn cùng khóa, nhưng **không được phép nhìn trộm hoặc sao chép giải pháp của người khác** (hệ thống Kotoed có tích hợp phát hiện đạo văn).
+
+---
+
+**Tóm lại:** Quy trình làm việc là một vòng lặp liên tục: **Fork** dự án > **Lập trình** trên IntelliJ IDEA > **Commit and Push** lên GitHub > **Submit** lên **Kotoed** > **Nhận Review** > **Resubmit** cho đến khi giải pháp được chấp nhận. Điều này đảm bảo sinh viên không chỉ học ngôn ngữ Kotlin mà còn thực hành các công cụ và quy trình chuẩn công nghiệp (Git, IDE, Code Review).
+
+Quá trình này giống như việc sử dụng một **dây chuyền lắp ráp tự động** (Kotoed) để kiểm tra các bộ phận (Commit/Solution) mà bạn chế tạo trong xưởng của mình (IntelliJ IDEA/GitHub). Mỗi bộ phận cần phải được kiểm tra (Review) và sửa chữa (Resubmit) cho đến khi đáp ứng tiêu chuẩn chất lượng (đóng yêu cầu) trước khi bạn được phép chuyển sang chế tạo bộ phận tiếp theo.

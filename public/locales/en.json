@@ -36,21 +36,32 @@
     "title": "Get In Touch",
     "subtitle": "Have a question or want to collaborate? I'd love to hear from you.",
     "email": "Email",
+    "emailTitle": "Email",
     "github": "GitHub",
+    "githubTitle": "GitHub",
     "linkedin": "LinkedIn",
+    "linkedinTitle": "LinkedIn",
     "formTitle": "Send me a message",
     "formDescription": "I'll get back to you as soon as possible",
     "name": "Name",
+    "nameLabel": "Name",
     "namePlaceholder": "Your name",
     "emailLabel": "Email",
     "emailPlaceholder": "your@email.com",
     "message": "Message",
+    "messageLabel": "Message",
     "messagePlaceholder": "Your message here...",
     "sendButton": "Send Message",
-    "sentButton": "Message Sent!"
+    "sentButton": "Message Sent!",
+    "submitButton": "Send Message",
+    "submitted": "Submitted!",
+    "successMessage": "Thank you! Your message has been sent successfully."
   },
   "posts": {
     "title": "All Articles",
     "subtitle": "Browse all my blog posts and articles"
+  },
+  "post": {
+    "tableOfContents": "Table of Contents"
   }
 }

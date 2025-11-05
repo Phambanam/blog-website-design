@@ -1,12 +1,9 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { BlogProvider } from "@/lib/blog-context"
 import { AuthProvider } from "@/lib/auth-context"
-
-const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "Modern Blog",
@@ -20,15 +17,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} font-sans antialiased`}>
-        <AuthProvider>
-          <BlogProvider>
-            {children}
-            <Analytics />
-          </BlogProvider>
-        </AuthProvider>
-      </body>
-    </html>
+    <AuthProvider>
+      <BlogProvider>
+        {children}
+        <Analytics />
+      </BlogProvider>
+    </AuthProvider>
   )
 }

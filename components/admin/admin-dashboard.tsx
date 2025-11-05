@@ -5,9 +5,18 @@ import { Plus, Edit2, Trash2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import PostEditor from "./post-editor"
+import UsersManager from "./users-manager"
+import TagsManager from "./tags-manager"
+import SettingsManager from "./settings-manager"
 import { useBlog, type BlogPost } from "@/lib/blog-context"
+import { apiClient } from "@/lib/api-client"
 
-export default function AdminDashboard({ onLogout }: { onLogout: () => void }) {
+interface AdminDashboardProps {
+  activeTab: string
+  onLogout: () => void
+}
+
+export default function AdminDashboard({ activeTab, onLogout }: AdminDashboardProps) {
   const { posts, addPost, updatePost, deletePost, refreshPosts } = useBlog()
   const [showEditor, setShowEditor] = useState(false)
   const [editingPost, setEditingPost] = useState<BlogPost | null>(null)
@@ -19,13 +28,29 @@ export default function AdminDashboard({ onLogout }: { onLogout: () => void }) {
     const fetchAllPosts = async () => {
       try {
         setIsLoading(true)
-        const response = await fetch("/api/posts?status=draft")
-        const draftPosts = await response.json()
-        const response2 = await fetch("/api/posts?status=published")
-        const publishedPosts = await response2.json()
-        setAllPosts([...publishedPosts, ...draftPosts])
+        const posts: any[] = await apiClient.get('/posts')
+
+        // Ensure we have an array
+        if (Array.isArray(posts)) {
+          setAllPosts(posts.map((post: any) => ({
+            id: post.id,
+            title: post.title,
+            excerpt: post.excerpt || '',
+            content: post.content,
+            featured_image: post.featuredImage,
+            status: post.status?.toLowerCase() === 'published' ? 'published' : 'draft',
+            read_time: post.readTime || 5,
+            created_at: post.createdAt,
+            updated_at: post.updatedAt,
+            author: post.author,
+            tags: post.tags || [],
+          })))
+        } else {
+          setAllPosts([])
+        }
       } catch (error) {
-        console.error("[v0] Error fetching posts:", error)
+        console.error("[ADMIN] Error fetching posts:", error)
+        setAllPosts([])
       } finally {
         setIsLoading(false)
       }
@@ -79,16 +104,27 @@ export default function AdminDashboard({ onLogout }: { onLogout: () => void }) {
     return <PostEditor post={editingPost} onSave={handleSavePost} onCancel={() => setShowEditor(false)} />
   }
 
+  // Render different content based on active tab
+  if (activeTab === 'users') {
+    return <UsersManager />
+  }
+
+  if (activeTab === 'tags') {
+    return <TagsManager />
+  }
+
+  if (activeTab === 'settings') {
+    return <SettingsManager />
+  }
+
+  // Default to posts tab
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-foreground">Dashboard</h1>
+          <h1 className="text-3xl font-bold text-foreground">Posts</h1>
           <p className="text-muted-foreground">Manage your blog posts and content</p>
         </div>
-        <Button onClick={onLogout} variant="outline">
-          Logout
-        </Button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

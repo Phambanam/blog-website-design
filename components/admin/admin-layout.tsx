@@ -6,13 +6,25 @@ import { useState } from "react"
 import { Menu, X } from "lucide-react"
 import AdminSidebar from "./admin-sidebar"
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
+interface AdminLayoutProps {
+  children: React.ReactNode
+  activeTab?: string
+  onTabChange?: (tab: string) => void
+  onLogout?: () => void
+}
+
+export default function AdminLayout({ children, activeTab = 'posts', onTabChange, onLogout }: AdminLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(true)
 
   return (
     <div className="flex h-screen bg-background">
       {/* Sidebar */}
-      <AdminSidebar isOpen={sidebarOpen} />
+      <AdminSidebar 
+        isOpen={sidebarOpen} 
+        activeTab={activeTab}
+        onTabChange={onTabChange || (() => {})}
+        onLogout={onLogout || (() => {})}
+      />
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">

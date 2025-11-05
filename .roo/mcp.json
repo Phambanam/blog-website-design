@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "postgres": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-postgres",
+        "postgresql://blog_user:blog_password@172.18.240.170:5433/blog_db"
+      ]
+    }
+  }
+}

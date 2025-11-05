@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm add:*)",
+      "Bash(pnpm init:*)",
+      "Bash(npm init:*)",
+      "Bash(pnpm install:*)",
+      "Bash(npx prisma:*)",
+      "Bash(pnpm run build)",
+      "Bash(pnpm run start:dev)",
+      "Bash(lsof:*)",
+      "Bash(xargs kill:*)",
+      "Bash(curl:*)",
+      "Bash(TOKEN=\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0OWFiZTM2NC0zYjg0LTRkNDAtYTg1YS05ZGUwNGQ2ODdkZjkiLCJlbWFpbCI6ImFkbWluQGV4YW1wbGUuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzYxMjExNzUxLCJleHAiOjE3NjEyMTUzNTF9.QSTR0JTyh7cyz_6BJaXt3faHVEwpt-7YTdyqsRD4SHE\")",
+      "Bash(mkdir:*)",
+      "Bash(timeout 60 pnpm run start:dev:*)",
+      "Bash(export:*)",
+      "Bash(POST_ID=\"fff28992-6f63-44cd-b7b9-2644313e72d1\")",
+      "Bash(pnpm run dev)",
+      "Bash(kill:*)",
+      "Bash(docker-compose up:*)",
+      "Bash(docker compose:*)",
+      "Bash(pnpm approve-builds:*)",
+      "Bash(pnpm rebuild:*)",
+      "Bash(npx nest:*)",
+      "Bash(node -e:*)",
+      "Read(//tmp/**)",
+      "Bash(cat:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
