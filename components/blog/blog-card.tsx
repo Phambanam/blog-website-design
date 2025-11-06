@@ -49,7 +49,7 @@ export default function BlogCard({ post }: BlogCardProps) {
                   variant="secondary" 
                   className="text-xs px-2 py-0.5 bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
                 >
-                  {typeof tag === "string" ? tag : tag.name}
+                  #{typeof tag === "string" ? tag : tag.name}
                 </Badge>
               ))}
               {post.tags.length > 3 && (

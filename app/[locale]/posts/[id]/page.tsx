@@ -7,7 +7,7 @@ import PostDetailLayout from "@/components/blog/post-detail-layout"
 import { ArrowLeft } from "lucide-react"
 import { notFound } from "next/navigation"
 
-// Fetch post data from API
+// Fetch post data from API and normalize to frontend shape
 async function getPost(id: string) {
   try {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001/api"
@@ -18,8 +18,63 @@ async function getPost(id: string) {
     if (!res.ok) {
       return null
     }
+    const raw = await res.json()
 
-    return await res.json()
+    // Normalize field names to match frontend expectations
+    const normalizeTag = (input: any) => {
+      if (!input) return null
+
+      const candidate = typeof input === "string" ? input : input.tag ?? input.tags ?? input
+
+      if (!candidate) return null
+      if (typeof candidate === "string") {
+        return { id: candidate, name: candidate }
+      }
+
+      const id =
+        candidate.id ??
+        candidate.slug ??
+        input.id ??
+        input.slug
+
+      if (!id) return null
+
+      const name =
+        candidate.name ??
+        candidate.title ??
+        candidate.slug ??
+        input.name ??
+        input.title ??
+        String(id)
+
+      return { id: String(id), name: String(name) }
+    }
+
+    const rawTags =
+      (Array.isArray(raw.tags) && raw.tags.length && raw.tags) ||
+      (Array.isArray(raw.post_tags) && raw.post_tags.length && raw.post_tags) ||
+      (Array.isArray(raw.postTags) && raw.postTags.length && raw.postTags) ||
+      []
+
+    const normalized = {
+      id: raw.id,
+      title: raw.title,
+      excerpt: raw.excerpt ?? "",
+      content: raw.content,
+      featured_image: raw.featured_image ?? raw.featuredImage ?? null,
+      read_time: raw.read_time ?? raw.readTime ?? 5,
+      created_at: raw.created_at ?? raw.createdAt,
+      updated_at: raw.updated_at ?? raw.updatedAt ?? null,
+      author: raw.author ? {
+        name: raw.author.name || raw.author.email || 'Anonymous',
+        email: raw.author.email,
+        bio: raw.author.bio ?? null,
+        avatar: raw.author.avatar ?? null,
+      } : null,
+      tags: Array.isArray(rawTags) ? rawTags.map(normalizeTag).filter((tag): tag is { id: string; name: string } => tag !== null) : [],
+    }
+
+    return normalized
   } catch (error) {
     console.error("Error fetching post:", error)
     return null

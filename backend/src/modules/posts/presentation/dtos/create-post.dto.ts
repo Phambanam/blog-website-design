@@ -1,4 +1,4 @@
-import { IsString, IsOptional, IsEnum, IsNumber, IsObject } from 'class-validator';
+import { IsString, IsOptional, IsEnum, IsNumber, IsObject, IsArray } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class CreatePostRequestDto {
@@ -34,4 +34,13 @@ export class CreatePostRequestDto {
   @IsObject()
   @IsOptional()
   tableOfContents?: any;
+
+  @ApiPropertyOptional({ 
+    example: ['tag-id-1', 'tag-id-2'],
+    description: 'Array of tag IDs to associate with the post',
+    type: [String]
+  })
+  @IsArray()
+  @IsOptional()
+  tagIds?: string[];
 }

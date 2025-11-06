@@ -41,7 +41,7 @@ export default function ContactForm() {
           <CardHeader>
             <Mail className="h-8 w-8 text-primary mb-2" />
             <CardTitle className="text-lg">{t("emailTitle")}</CardTitle>
-            <CardDescription>contact@example.com</CardDescription>
+            <CardDescription>namlknn53@gmail.com</CardDescription>
           </CardHeader>
         </Card>
         <Card className="hover:shadow-lg transition-shadow">
@@ -55,7 +55,7 @@ export default function ContactForm() {
           <CardHeader>
             <Github className="h-8 w-8 text-primary mb-2" />
             <CardTitle className="text-lg">{t("githubTitle")}</CardTitle>
-            <CardDescription>github.com/yourusername</CardDescription>
+            <CardDescription>github.com/phambanam99</CardDescription>
           </CardHeader>
         </Card>
       </div>

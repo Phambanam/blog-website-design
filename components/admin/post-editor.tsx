@@ -4,10 +4,10 @@ import type React from "react"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { ArrowLeft, X, Plus, Eye } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
+import { ArrowLeft, Eye } from "lucide-react"
 import RichTextEditor from "./rich-text-editor"
 import { PostPreview } from "./post-preview"
+import HashtagTagInput from "./hashtag-tag-input"
 import type { BlogPost } from "@/lib/blog-context"
 import { apiClient } from "@/lib/api-client"
 import { useAuth } from "@/lib/auth-context"
@@ -43,33 +43,16 @@ export default function PostEditor({ post, onSave, onCancel }: PostEditorProps) 
   const [status, setStatus] = useState<"draft" | "published">("draft")
   const [readTime, setReadTime] = useState(5)
   const [isSaving, setIsSaving] = useState(false)
-  const [availableTags, setAvailableTags] = useState<Tag[]>([])
   const [selectedTags, setSelectedTags] = useState<Tag[]>([])
-  const [showTagDropdown, setShowTagDropdown] = useState(false)
-  const [tagSearchQuery, setTagSearchQuery] = useState("")
-  const [isLoadingTags, setIsLoadingTags] = useState(false)
   const [showPreview, setShowPreview] = useState(false)
   const { user } = useAuth()
   
   useEffect(() => {
-    const loadTags = async () => {
-      setIsLoadingTags(true)
-      try {
-        const response = await apiClient.get<Tag[]>('/tags')
-        setAvailableTags(response || [])
-      } catch (error) {
-        console.error('Failed to load tags:', error)
-        setAvailableTags([])
-      } finally {
-        setIsLoadingTags(false)
-      }
-    }
-    loadTags()
-  }, [])
-  
-  useEffect(() => {
     const loadPostData = async () => {
       if (post) {
+        console.log('[POST EDITOR] Loading post:', post)
+        console.log('[POST EDITOR] Post tags:', post.tags)
+        
         try {
           const translations = await apiClient.get<PostTranslation[]>(
             `/posts/${post.id}/translations`
@@ -102,30 +85,16 @@ export default function PostEditor({ post, onSave, onCancel }: PostEditorProps) 
         setFeaturedImage(post.featured_image || '')
         setStatus(post.status)
         setReadTime(post.read_time || 5)
-        setSelectedTags(post.tags || [])
+        
+        // Ensure tags is an array with proper structure
+        const tags = Array.isArray(post.tags) ? post.tags : []
+        console.log('[POST EDITOR] Setting tags:', tags)
+        setSelectedTags(tags)
       }
     }
     
     loadPostData()
   }, [post])
-  
-  const addTag = (tag: Tag) => {
-    if (!selectedTags.find((t) => t.id === tag.id)) {
-      setSelectedTags([...selectedTags, tag])
-    }
-    setShowTagDropdown(false)
-    setTagSearchQuery("")
-  }
-  
-  const removeTag = (tagId: string) => {
-    setSelectedTags(selectedTags.filter((t) => t.id !== tagId))
-  }
-  
-  const filteredTags = (availableTags || []).filter(
-    (tag) =>
-      tag.name.toLowerCase().includes(tagSearchQuery.toLowerCase()) &&
-      !selectedTags.find((t) => t.id === tag.id)
-  )
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -139,7 +108,7 @@ export default function PostEditor({ post, onSave, onCancel }: PostEditorProps) 
         featuredImage,
         status,
         read_time: readTime,
-        tags: selectedTags,
+        tagIds: selectedTags.map(tag => tag.id), // Extract tag IDs
       }
       
       await onSave(postData)
@@ -302,46 +271,15 @@ export default function PostEditor({ post, onSave, onCancel }: PostEditorProps) 
         <Card>
           <CardHeader>
             <CardTitle>Tags</CardTitle>
+            <CardDescription>
+              Use hashtags to add tags. Type #tagname and press Enter or Space. New tags will be created automatically.
+            </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="space-y-4">
-              <div className="flex flex-wrap gap-2">
-                {selectedTags.map((tag) => (
-                  <Badge key={tag.id} variant="secondary" className="flex items-center gap-1">
-                    {tag.name}
-                    <button type="button" onClick={() => removeTag(tag.id)} className="ml-1">
-                      <X className="h-3 w-3" />
-                    </button>
-                  </Badge>
-                ))}
-              </div>
-              <div className="relative">
-                <input
-                  type="text"
-                  value={tagSearchQuery}
-                  onChange={(e) => {
-                    setTagSearchQuery(e.target.value)
-                    setShowTagDropdown(true)
-                  }}
-                  placeholder="Search tags..."
-                  className="w-full px-4 py-2 rounded-md border border-border bg-background"
-                />
-                {showTagDropdown && (
-                  <div className="absolute z-10 w-full mt-1 bg-background border rounded-md shadow-lg max-h-60 overflow-y-auto">
-                    {filteredTags.map((tag) => (
-                      <button
-                        key={tag.id}
-                        type="button"
-                        onClick={() => addTag(tag)}
-                        className="w-full text-left px-4 py-2 hover:bg-accent"
-                      >
-                        {tag.name}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
+            <HashtagTagInput
+              selectedTags={selectedTags}
+              onTagsChange={setSelectedTags}
+            />
           </CardContent>
         </Card>
 
@@ -418,7 +356,9 @@ export default function PostEditor({ post, onSave, onCancel }: PostEditorProps) 
         tags={selectedTags.map(tag => tag.name)}
         author={user ? {
           name: user.name || '',
-          email: user.email
+          email: user.email,
+          bio: (user as any).bio || null,
+          avatar: (user as any).avatar || null,
         } : undefined}
         createdAt={post?.created_at ? new Date(post.created_at) : new Date()}
       />

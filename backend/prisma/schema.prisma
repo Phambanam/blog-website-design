@@ -12,6 +12,8 @@ model User {
   email        String    @unique
   passwordHash String    @map("password_hash")
   name         String?
+  bio          String?
+  avatar       String?
   role         String?   @default("user")
   createdAt    DateTime? @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt    DateTime? @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)

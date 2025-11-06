@@ -4,30 +4,35 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(0.98 0 0);
-  --foreground: oklch(0.15 0 0);
+  --background: oklch(0.985 0 0);
+  --foreground: oklch(0.14 0 0);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.15 0 0);
+  --card-foreground: oklch(0.14 0 0);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.15 0 0);
-  --primary: oklch(0.45 0.22 262);
+  --popover-foreground: oklch(0.14 0 0);
+  /* Vibrant, youthful primary (indigo-violet) */
+  --primary: oklch(0.62 0.24 275);
   --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.92 0.05 262);
+  /* Soft sky secondary */
+  --secondary: oklch(0.94 0.06 230);
   --secondary-foreground: oklch(0.15 0 0);
-  --muted: oklch(0.92 0 0);
+  /* Muted surfaces with a subtle cool tint */
+  --muted: oklch(0.96 0.01 260);
   --muted-foreground: oklch(0.5 0 0);
-  --accent: oklch(0.45 0.22 262);
+  /* Playful accent (magenta/pink) for gradients */
+  --accent: oklch(0.68 0.25 330);
   --accent-foreground: oklch(1 0 0);
   --destructive: oklch(0.58 0.25 27);
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.92 0 0);
-  --input: oklch(0.95 0 0);
-  --ring: oklch(0.45 0.22 262);
-  --chart-1: oklch(0.45 0.22 262);
-  --chart-2: oklch(0.65 0.15 200);
-  --chart-3: oklch(0.75 0.12 150);
-  --chart-4: oklch(0.55 0.18 280);
-  --chart-5: oklch(0.85 0.1 100);
+  --border: oklch(0.93 0 0);
+  --input: oklch(0.96 0 0);
+  --ring: oklch(0.62 0.24 275);
+  /* Brighter chart palette across hues */
+  --chart-1: oklch(0.62 0.24 275);
+  --chart-2: oklch(0.7 0.21 200);
+  --chart-3: oklch(0.78 0.18 150);
+  --chart-4: oklch(0.72 0.15 40);
+  --chart-5: oklch(0.68 0.23 330);
   --radius: 0.5rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
@@ -41,29 +46,29 @@
 
 .dark {
   --background: oklch(0.12 0 0);
-  --foreground: oklch(0.95 0 0);
+  --foreground: oklch(0.96 0 0);
   --card: oklch(0.18 0 0);
-  --card-foreground: oklch(0.95 0 0);
+  --card-foreground: oklch(0.96 0 0);
   --popover: oklch(0.18 0 0);
-  --popover-foreground: oklch(0.95 0 0);
-  --primary: oklch(0.65 0.2 262);
+  --popover-foreground: oklch(0.96 0 0);
+  --primary: oklch(0.72 0.24 275);
   --primary-foreground: oklch(0.12 0 0);
-  --secondary: oklch(0.25 0.05 262);
-  --secondary-foreground: oklch(0.95 0 0);
-  --muted: oklch(0.25 0 0);
-  --muted-foreground: oklch(0.65 0 0);
-  --accent: oklch(0.65 0.2 262);
+  --secondary: oklch(0.28 0.05 230);
+  --secondary-foreground: oklch(0.96 0 0);
+  --muted: oklch(0.25 0.02 260);
+  --muted-foreground: oklch(0.7 0 0);
+  --accent: oklch(0.74 0.25 330);
   --accent-foreground: oklch(0.12 0 0);
   --destructive: oklch(0.55 0.2 27);
-  --destructive-foreground: oklch(0.95 0 0);
+  --destructive-foreground: oklch(0.96 0 0);
   --border: oklch(0.25 0 0);
   --input: oklch(0.22 0 0);
-  --ring: oklch(0.65 0.2 262);
-  --chart-1: oklch(0.65 0.2 262);
-  --chart-2: oklch(0.75 0.15 200);
-  --chart-3: oklch(0.85 0.12 150);
-  --chart-4: oklch(0.7 0.18 280);
-  --chart-5: oklch(0.8 0.1 100);
+  --ring: oklch(0.72 0.24 275);
+  --chart-1: oklch(0.72 0.24 275);
+  --chart-2: oklch(0.75 0.2 200);
+  --chart-3: oklch(0.85 0.14 150);
+  --chart-4: oklch(0.72 0.16 40);
+  --chart-5: oklch(0.78 0.24 330);
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);
@@ -118,9 +123,11 @@
   * {
     @apply border-border outline-ring/50;
   }
-  body {
+body {
     @apply bg-background text-foreground;
-  }
+    /* Subtle micro-interactions across the app */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
 }
 
 /* Smooth transitions for theme switching */
@@ -128,9 +135,7 @@ html {
   color-scheme: light dark;
 }
 
-body {
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
+/* moved into base:body above */
 
 /* Custom prose styling for better readability */
 .prose {
@@ -164,7 +169,7 @@ body {
 }
 
 .prose a {
-  @apply text-primary hover:text-primary/80 underline transition-colors;
+  @apply text-primary hover:text-primary/80 underline decoration-2 underline-offset-4 transition-colors;
 }
 
 .prose strong {

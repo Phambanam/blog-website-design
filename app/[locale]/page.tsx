@@ -29,7 +29,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <Header />
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="py-16 md:py-24 px-4 md:px-8 max-w-6xl mx-auto">
+        <section className="py-2
+ md:py-24 px-4 md:px-8 max-w-6xl mx-auto">
           <div className="space-y-6 bg-card rounded-2xl shadow-sm border border-border/50 p-8 md:p-12">
             <div className="space-y-3">
               <h1 className="text-4xl md:text-5xl font-bold text-foreground">{t("title")}</h1>
@@ -47,7 +48,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         </section>
 
         {/* Blog Posts Section */}
-        <section id="posts" className="py-12 px-4 md:px-8 max-w-6xl mx-auto">
+        <section id="posts" className="py-2 px-4 md:px-8 max-w-6xl mx-auto">
           <div className="space-y-8">
             <div className="bg-card rounded-2xl shadow-sm border border-border/50 p-6">
               <h2 className="text-3xl font-bold text-foreground mb-2">{t("latestArticles")}</h2>

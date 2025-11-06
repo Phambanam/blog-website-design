@@ -16,21 +16,21 @@
   },
   "footer": {
     "blog": "Blog",
-    "description": "Một blog cá nhân hiện đại khám phá phát triển web và thiết kế.",
+    "description": "Nơi chia sẻ về mọi thứ liên quan đến phát triển web và thiết kế. Học hỏi, xây dựng và phát triển cùng nhau.",
     "navigation": "Điều hướng",
     "follow": "Theo dõi",
-    "copyright": "© 2025 Blog của tôi. Tất cả quyền được bảo lưu."
+    "copyright": "© 2025 Blog của Devhunter9x. Tất cả quyền được bảo lưu."
   },
   "about": {
     "title": "Về tôi",
-    "intro": "Tôi là một nhà phát triển web và nhà thiết kế đam mê tạo ra những trải nghiệm kỹ thuật số đẹp và chức năng. Với hơn 5 năm kinh nghiệm trong ngành, tôi đã làm việc trên các dự án từ khởi nghiệp đến các ứng dụng cấp doanh nghiệp.",
+    "intro": "Tôi là một nhà phát triển web và nhà thiết kế đam mê tạo ra những trải nghiệm kỹ thuật số đẹp và chức năng. Với hơn 3 năm kinh nghiệm trong ngành, tôi đã làm việc trên các dự án từ khởi nghiệp đến các ứng dụng cấp doanh nghiệp.",
     "expertise": "Chuyên môn của tôi bao gồm các công nghệ web hiện đại như React, Next.js, TypeScript và Tailwind CSS. Tôi đặc biệt quan tâm đến việc xây dựng các ứng dụng hiệu suất cao, có thể truy cập và thân thiện với người dùng.",
     "hobby": "Khi không lập trình, bạn có thể tìm thấy tôi khám phá các xu hướng thiết kế mới, đóng góp cho các dự án mã nguồn mở hoặc chia sẻ kiến thức thông qua viết bài và nói chuyện tại các cuộc gặp gỡ công nghệ.",
     "skillsTitle": "Kỹ năng & Chuyên môn",
     "frontend": "Frontend",
     "backend": "Backend",
     "frontendSkills": ["React & Next.js", "TypeScript", "Tailwind CSS", "Thiết kế UI/UX"],
-    "backendSkills": ["Node.js", "PostgreSQL", "REST APIs", "Thiết kế cơ sở dữ liệu"]
+    "backendSkills": ["Node.js", "PostgreSQL", "REST APIs", "Springboot", "Thiết kế cơ sở dữ liệu"]
   },
   "contact": {
     "title": "Liên hệ với tôi",

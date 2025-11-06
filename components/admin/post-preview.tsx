@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/dialog"
 import { Badge } from "@/components/ui/badge"
 import { Calendar, User } from "lucide-react"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { format } from "date-fns"
 
 interface PostPreviewProps {
@@ -21,6 +22,8 @@ interface PostPreviewProps {
   author?: {
     name: string
     email: string
+    bio?: string | null
+    avatar?: string | null
   }
   createdAt?: Date
 }
@@ -76,21 +79,6 @@ export function PostPreview({
             )}
           </div>
           
-          {/* Tags */}
-          {tags && tags.length > 0 && (
-            <div className="flex flex-wrap gap-2">
-              {tags.map((tag, index) => (
-                <Badge 
-                  key={index} 
-                  variant="secondary"
-                  className="px-3 py-1"
-                >
-                  {tag}
-                </Badge>
-              ))}
-            </div>
-          )}
-          
           {/* Excerpt */}
           {excerpt && (
             <p className="text-lg text-muted-foreground leading-relaxed border-l-4 border-primary pl-4 italic">
@@ -118,6 +106,43 @@ export function PostPreview({
               prose-li:text-foreground/90"
             dangerouslySetInnerHTML={{ __html: content || "<p class='text-muted-foreground italic'>No content yet...</p>" }} 
           />
+          
+          {/* Tags - Moved to bottom */}
+          {tags && tags.length > 0 && (
+            <div className="mt-8 pt-8 border-t border-border">
+              <div className="flex flex-wrap gap-2">
+                {tags.map((tag, index) => (
+                  <Badge 
+                    key={index} 
+                    variant="secondary"
+                    className="px-3 py-1 text-sm"
+                  >
+                    #{tag}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          )}
+          
+          {/* Author Bio - Added at bottom */}
+          {author && (
+            <div className="mt-8 pt-8 border-t border-border">
+              <div className="flex items-start gap-4">
+                <Avatar className="h-16 w-16">
+                  <AvatarImage src={author.avatar || undefined} alt={author.name} />
+                  <AvatarFallback className="bg-primary text-primary-foreground text-lg">
+                    {author.name?.charAt(0)?.toUpperCase() || 'U'}
+                  </AvatarFallback>
+                </Avatar>
+                <div className="flex-1">
+                  <h3 className="font-semibold text-lg mb-1">{author.name || author.email}</h3>
+                  <p className="text-muted-foreground text-sm">
+                    {author.bio || "This author hasn't written a bio yet."}
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
         </article>
       </DialogContent>
     </Dialog>

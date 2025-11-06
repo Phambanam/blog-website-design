@@ -11,6 +11,7 @@ export interface CreatePostDto {
   status?: 'DRAFT' | 'PUBLISHED';
   readTime?: number;
   tableOfContents?: any;
+  tagIds?: string[]; // Array of tag IDs to associate with the post
 }
 
 @Injectable()
@@ -32,6 +33,13 @@ export class CreatePostUseCase {
       tableOfContents: dto.tableOfContents,
     });
 
-    return await this.postRepository.save(post);
+    const savedPost = await this.postRepository.save(post);
+
+    // Associate tags if provided
+    if (dto.tagIds && dto.tagIds.length > 0) {
+      await this.postRepository.setPostTags(savedPost.id, dto.tagIds);
+    }
+
+    return savedPost;
   }
 }

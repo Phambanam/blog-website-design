@@ -1,4 +1,6 @@
 export class Post {
+  public tags?: any[];
+  
   constructor(
     public readonly id: string,
     public readonly title: string,
@@ -11,8 +13,9 @@ export class Post {
     public readonly tableOfContents: any,
     public readonly createdAt: Date,
     public readonly updatedAt: Date,
-    public tags?: any[],
-  ) {}
+  ) {
+    this.tags = [];
+  }
 
   static create(data: {
     title: string;

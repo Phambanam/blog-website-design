@@ -29,5 +29,13 @@
     ],
     "deny": [],
     "ask": []
+  },
+  "env": {
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "glm-4.5-air",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "glm-4.6",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "glm-4.6",
+    "ANTHROPIC_API_KEY": "sk-4URCcMZ7w88Cm43PJeTxLaFUhUpFOojXv6wlsJkiPjvQb0jq",
+    "ANTHROPIC_BASE_URL": "https://agentrouter.org/",
+    "API_TIMEOUT_MS": "3000000"
   }
 }

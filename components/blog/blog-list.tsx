@@ -88,7 +88,7 @@ export default function BlogList() {
                   className="cursor-pointer hover:bg-primary/90 hover:text-primary-foreground transition-all text-sm px-4 py-1.5"
                   onClick={() => setSelectedTag(tag)}
                 >
-                  {tag}
+                  #{tag}
                   <span className="ml-2 text-xs opacity-70">({count})</span>
                 </Badge>
               )

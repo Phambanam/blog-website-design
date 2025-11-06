@@ -129,7 +129,10 @@ export default function RichTextEditor({
   // Update editor content when prop changes (for editing existing posts)
   useEffect(() => {
     if (editor && content !== editor.getHTML()) {
-      editor.commands.setContent(content)
+      // Use queueMicrotask to defer the update and avoid flushSync warning
+      queueMicrotask(() => {
+        editor.commands.setContent(content)
+      })
     }
   }, [editor, content])
 

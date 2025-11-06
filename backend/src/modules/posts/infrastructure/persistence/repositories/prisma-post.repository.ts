@@ -16,6 +16,8 @@ export class PrismaPostRepository implements IPostRepository {
             id: true,
             name: true,
             email: true,
+            // bio: true,
+            // avatar: true,
           },
         },
         translations: {
@@ -30,6 +32,9 @@ export class PrismaPostRepository implements IPostRepository {
       orderBy: { createdAt: 'desc' },
     });
 
+    console.log('[BACKEND] First post raw data:', JSON.stringify(posts[0], null, 2));
+    console.log('[BACKEND] First post post_tags:', posts[0]?.post_tags);
+
     return posts.map(p => this.toDomain(p, locale));
   }
 
@@ -42,6 +47,8 @@ export class PrismaPostRepository implements IPostRepository {
             id: true,
             name: true,
             email: true,
+            bio: true,
+            avatar: true,
           },
         },
         translations: locale ? {
@@ -155,6 +162,23 @@ export class PrismaPostRepository implements IPostRepository {
     });
   }
 
+  async setPostTags(postId: string, tagIds: string[]): Promise<void> {
+    // Delete all existing post-tag associations
+    await this.prisma.postTag.deleteMany({
+      where: { post_id: postId },
+    });
+
+    // Create new associations
+    if (tagIds && tagIds.length > 0) {
+      await this.prisma.postTag.createMany({
+        data: tagIds.map(tagId => ({
+          post_id: postId,
+          tag_id: tagId,
+        })),
+      });
+    }
+  }
+
   private toDomain(prismaPost: any, locale?: string): Post {
     const translation = locale && prismaPost.translations?.[0];
 
@@ -178,6 +202,8 @@ export class PrismaPostRepository implements IPostRepository {
         id: prismaPost.author.id,
         name: prismaPost.author.name || prismaPost.author.email,
         email: prismaPost.author.email,
+        bio: (prismaPost.author as any).bio || null,
+        avatar: (prismaPost.author as any).avatar || null,
       };
     }
 

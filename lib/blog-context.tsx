@@ -23,6 +23,7 @@ export interface BlogPost {
     email: string
   }
   tags: Array<{ id: string; name: string; slug: string }>
+  tagIds?: string[] // Optional field for sending tag IDs to backend
 }
 
 interface BlogContextType {
@@ -87,6 +88,7 @@ export function BlogProvider({ children }: { children: React.ReactNode }) {
         content: post.content,
         featuredImage: post.featured_image,
         status: post.status,
+        tagIds: post.tagIds || [], // Send tag IDs to backend
       })
       const newPost = normalizePost(data)
       setPosts([newPost, ...posts])
@@ -105,6 +107,7 @@ export function BlogProvider({ children }: { children: React.ReactNode }) {
         content: updates.content,
         featuredImage: updates.featured_image,
         status: updates.status,
+        tagIds: updates.tagIds, // Send tag IDs to backend
       })
       const updatedPost = normalizePost(data)
       setPosts(posts.map((p) => (p.id === id ? updatedPost : p)))

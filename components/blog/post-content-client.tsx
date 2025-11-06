@@ -3,6 +3,7 @@
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import TableOfContents from "@/components/blog/table-of-contents"
+import AuthorBio from "@/components/blog/author-bio"
 import { List } from "lucide-react"
 import { formatDate } from "@/lib/utils"
 import { useState, useEffect } from "react"
@@ -25,7 +26,12 @@ interface PostContentClientProps {
     created_at: string
     updated_at: string | null
     tags: Array<{ id: string; name: string }>
-    author: { name: string } | null
+    author: { 
+      name: string
+      email?: string
+      bio?: string | null
+      avatar?: string | null
+    } | null
   }
   onTocGenerated?: (items: TocItem[]) => void
 }
@@ -119,19 +125,27 @@ export default function PostContentClient({ post, onTocGenerated }: PostContentC
         </div>
       )}
 
-      {/* Tags */}
-      <div className="flex flex-wrap gap-2 mb-8">
-        {post.tags.map((tag) => (
-          <Badge key={tag.id} className="bg-primary text-primary-foreground">
-            {tag.name}
-          </Badge>
-        ))}
-      </div>
-
       {/* Post Content */}
-      <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-ul:text-foreground prose-ol:text-foreground prose-li:text-foreground prose-a:text-primary prose-code:text-foreground prose-pre:bg-muted prose-pre:text-foreground">
+      <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-ul:text-foreground prose-ol:text-foreground prose-li:text-foreground prose-a:text-primary prose-code:text-foreground prose-pre:bg-muted prose-pre:text-foreground mb-8">
         <div dangerouslySetInnerHTML={{ __html: processedContent }} />
       </div>
+
+      {/* Tags - Moved to bottom */}
+      {post.tags.length > 0 && (
+        <div className="border-t border-border pt-6 mb-6">
+          <h3 className="text-sm font-semibold text-muted-foreground mb-3">Tags</h3>
+          <div className="flex flex-wrap gap-2">
+            {post.tags.map((tag) => (
+              <Badge key={tag.id} variant="secondary" className="bg-primary/10 text-primary hover:bg-primary/20">
+                #{tag.name}
+              </Badge>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Author Bio */}
+      <AuthorBio author={post.author} />
     </div>
   )
 }

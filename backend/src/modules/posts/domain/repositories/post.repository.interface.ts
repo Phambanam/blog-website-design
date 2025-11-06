@@ -11,6 +11,9 @@ export interface IPostRepository {
   saveTranslation(translation: PostTranslation): Promise<PostTranslation>;
   getTranslations(postId: string): Promise<PostTranslation[]>;
   deleteTranslation(postId: string, locale: string): Promise<void>;
+
+  // Tag methods
+  setPostTags(postId: string, tagIds: string[]): Promise<void>;
 }
 
 export const POST_REPOSITORY = Symbol('POST_REPOSITORY');

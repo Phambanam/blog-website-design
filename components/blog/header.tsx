@@ -37,8 +37,8 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border">
       <nav className="max-w-6xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
-        <Link href="/" className="text-2xl font-bold text-primary">
-          Blog
+        <Link href="/" className="text-2xl font-extrabold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent tracking-tight">
+          Devhunter9x
         </Link>
 
         {/* Desktop Navigation */}

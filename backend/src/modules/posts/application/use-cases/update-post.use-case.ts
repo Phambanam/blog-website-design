@@ -10,6 +10,7 @@ export interface UpdatePostDto {
   status?: 'DRAFT' | 'PUBLISHED';
   readTime?: number;
   tableOfContents?: any;
+  tagIds?: string[]; // Array of tag IDs to associate with the post
 }
 
 @Injectable()
@@ -25,6 +26,13 @@ export class UpdatePostUseCase {
       throw new NotFoundException(`Post with ID ${id} not found`);
     }
 
-    return await this.postRepository.update(id, dto);
+    const updatedPost = await this.postRepository.update(id, dto);
+
+    // Update tags if provided
+    if (dto.tagIds !== undefined) {
+      await this.postRepository.setPostTags(id, dto.tagIds);
+    }
+
+    return updatedPost;
   }
 }

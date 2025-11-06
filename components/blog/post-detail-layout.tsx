@@ -14,7 +14,12 @@ interface PostDetailLayoutProps {
     created_at: string
     updated_at: string | null
     tags: Array<{ id: string; name: string }>
-    author: { name: string } | null
+    author: { 
+      name: string
+      email?: string
+      bio?: string | null
+      avatar?: string | null
+    } | null
   }
 }
 

@@ -32,19 +32,32 @@ export default function AdminDashboard({ activeTab, onLogout }: AdminDashboardPr
 
         // Ensure we have an array
         if (Array.isArray(posts)) {
-          setAllPosts(posts.map((post: any) => ({
-            id: post.id,
-            title: post.title,
-            excerpt: post.excerpt || '',
-            content: post.content,
-            featured_image: post.featuredImage,
-            status: post.status?.toLowerCase() === 'published' ? 'published' : 'draft',
-            read_time: post.readTime || 5,
-            created_at: post.createdAt,
-            updated_at: post.updatedAt,
-            author: post.author,
-            tags: post.tags || [],
-          })))
+          setAllPosts(posts.map((post: any) => {
+            // Normalize tags to ensure consistent format
+            const tags = Array.isArray(post.tags) 
+              ? post.tags.map((tag: any) => ({
+                  id: tag.id,
+                  name: tag.name,
+                  slug: tag.slug || tag.name.toLowerCase().replace(/\s+/g, '-'),
+                }))
+              : []
+            
+            console.log('[ADMIN] Post tags:', post.title, tags)
+            
+            return {
+              id: post.id,
+              title: post.title,
+              excerpt: post.excerpt || '',
+              content: post.content,
+              featured_image: post.featuredImage,
+              status: post.status?.toLowerCase() === 'published' ? 'published' : 'draft',
+              read_time: post.readTime || 5,
+              created_at: post.createdAt,
+              updated_at: post.updatedAt,
+              author: post.author,
+              tags: tags,
+            }
+          }))
         } else {
           setAllPosts([])
         }
@@ -66,6 +79,10 @@ export default function AdminDashboard({ activeTab, onLogout }: AdminDashboardPr
   }
 
   const handleEditPost = (post: BlogPost) => {
+    console.log('[ADMIN] Edit post - Full object:', post)
+    console.log('[ADMIN] Edit post - tags:', post.tags)
+    console.log('[ADMIN] Edit post - tags is array:', Array.isArray(post.tags))
+    console.log('[ADMIN] Edit post - tags length:', post.tags?.length)
     setEditingPost(post)
     setShowEditor(true)
   }
@@ -91,7 +108,8 @@ export default function AdminDashboard({ activeTab, onLogout }: AdminDashboardPr
         featured_image: post.featured_image || null,
         status: post.status || "draft",
         read_time: post.read_time || 5,
-        tags: post.tags || [],
+        tags: [], // Will be set by backend based on tagIds
+        tagIds: post.tagIds || [], // Send tag IDs to backend
       })
       if (newPost) {
         setAllPosts([newPost, ...allPosts])
